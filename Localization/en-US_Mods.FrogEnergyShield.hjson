@@ -1,0 +1,13 @@
+# This file will automatically update with entries for new content after a build and reload
+
+Items: {
+	debugsword: {
+		DisplayName: debugsword
+		Tooltip: ""
+	}
+
+	HylianFrogShield: {
+		DisplayName: Hylian Frog Shield
+		Tooltip: ""
+	}
+}
