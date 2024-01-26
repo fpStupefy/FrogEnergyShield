@@ -16,7 +16,7 @@ namespace FrogEnergyShield
         public static double ShieldRegen;
         public static int ShieldEnergyMax;
         public static bool ShieldOn;
-        public static bool isDoge;
+        public static bool isDodge;
 
 
         public override void Initialize()
@@ -66,9 +66,9 @@ namespace FrogEnergyShield
 
         public override bool FreeDodge(Player.HurtInfo info)
         {
-            if(isDoge)
+            if(isDodge)
             {
-                isDoge = false;
+                isDodge = false;
                 return true;
             }
             return false;
@@ -94,7 +94,7 @@ namespace FrogEnergyShield
                         Player.immuneNoBlink = false;
                         Player.immuneTime = 60;
                         ShieldEnergy -= info.SourceDamage;
-                        isDoge = true;
+                        isDodge = true;
                         return;
                     }
                     else
@@ -102,12 +102,12 @@ namespace FrogEnergyShield
                         OverDamage = info.SourceDamage - (int)ShieldEnergy;
                         info.Damage = OverDamage;
                         ShieldEnergy = 0;
-                        isDoge = false;
+                        isDodge = false;
                         return;
                     }
                 }
             }
-            isDoge = false;
+            isDodge = false;
             
         }
     }
