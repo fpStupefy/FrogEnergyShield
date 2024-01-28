@@ -31,15 +31,15 @@ namespace FrogEnergyShield
         public override void OnEnterWorld()
         {
             cooldown = 0;
-            ShieldEnergy = ShieldEnergyMax;
             ShieldEnergyMax = Player.statLifeMax;
+            ShieldEnergy = ShieldEnergyMax;
         }
 
         public override void OnRespawn()
         {
             cooldown = 0;
-            ShieldEnergy = ShieldEnergyMax;
             ShieldEnergyMax = Player.statLifeMax;
+            ShieldEnergy = ShieldEnergyMax;
         }
 
         public override void ResetEffects()
