@@ -11,10 +11,11 @@ namespace FrogEnergyShield
     internal class FrogEnergyShieldModPlayer : ModPlayer
     {
         public static int OverDamage;
-        public static int cooldown;
-        public static double ShieldEnergy;
+        public int cooldown;
+        public int cooldownMax;
+        public double ShieldEnergy;
         public static double ShieldRegen;
-        public static int ShieldEnergyMax;
+        public  int ShieldEnergyMax;
         public static bool ShieldOn;
         public static bool isDodge;
 
@@ -23,6 +24,7 @@ namespace FrogEnergyShield
         {
             ShieldOn = false;
             cooldown = 0;
+            cooldownMax = 6 * 60;
             ShieldEnergy = 0;
             ShieldRegen = 0.5;
             ShieldEnergyMax = 0;
@@ -31,6 +33,7 @@ namespace FrogEnergyShield
         public override void OnEnterWorld()
         {
             cooldown = 0;
+            cooldownMax = 6 * 60;
             ShieldEnergyMax = Player.statLifeMax;
             ShieldEnergy = ShieldEnergyMax;
         }
@@ -38,6 +41,7 @@ namespace FrogEnergyShield
         public override void OnRespawn()
         {
             cooldown = 0;
+            cooldownMax = 6 * 60;
             ShieldEnergyMax = Player.statLifeMax;
             ShieldEnergy = ShieldEnergyMax;
         }

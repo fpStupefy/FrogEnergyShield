@@ -10,4 +10,14 @@ Items: {
 		DisplayName: Hylian Frog Shield
 		Tooltip: ""
 	}
+
+	justasword: {
+		DisplayName: justasword
+		Tooltip: ""
+	}
+}
+
+UI: {
+	ShieldEnergy: ENERGY: {0} / {1}
+	CD: CD: {0}S
 }
