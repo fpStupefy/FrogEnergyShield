@@ -51,19 +51,14 @@ namespace FrogEnergyShield
             ShieldOn = false;
             ShieldEnergyMax = Player.statLifeMax;
             cooldown -= 1;
-            if (cooldown <= 0)
-            {
-                cooldown = 0;
-            }
+
+            cooldown = Utils.Clamp(cooldown, 0, cooldownMax);
             if (cooldown == 0)
             {
                 if(ShieldEnergy < ShieldEnergyMax)
                 {
                     ShieldEnergy += ShieldRegen;
-                    if (ShieldEnergy >= ShieldEnergyMax)
-                    {
-                        ShieldEnergy = ShieldEnergyMax;
-                    }
+                    ShieldEnergy = Utils.Clamp(ShieldEnergy, 0, ShieldEnergyMax);
                 }
             }
         }
