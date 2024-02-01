@@ -22,8 +22,11 @@ namespace FrogEnergyShield.Items
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.noKnockback = true;
-            FrogEnergyShieldModPlayer.ShieldOn = true;
+            var modPlayer = Main.LocalPlayer.GetModPlayer<FrogEnergyShieldModPlayer>();
+            modPlayer.ShieldOn = true;
+            if (modPlayer.ShieldEnergy > 0)
+            { player.noKnockback = true; }
+
         }
 
         public override void AddRecipes()

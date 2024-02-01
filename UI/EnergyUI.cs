@@ -24,9 +24,10 @@ namespace FrogEnergyShields.UI
 
         public override void OnInitialize()
         {
+            var config = ModContent.GetInstance<FrogEnergyShieldClientConfig>();
             area = new UIElement();
-            area.Left.Set(-area.Width.Pixels - 650, 1f); 
-            area.Top.Set(30, 0f); 
+            area.Left.Set(config.PositionX, 0f); 
+            area.Top.Set(config.PositionY, 0f); 
             area.Width.Set(200, 0f); 
             area.Height.Set(60, 0f);
 
@@ -37,13 +38,13 @@ namespace FrogEnergyShields.UI
             EnergyBar.Height.Set(35, 0f);
 
 
-            textE = new UIText("0/0", 0.8f);
+            textE = new UIText("", 0.8f);
             textE.Width.Set(150, 0f);
             textE.Height.Set(35, 0f);
             textE.Top.Set(40, 0f);
             textE.Left.Set(-10, 0f);
 
-            textCD = new UIText("Ready", 0.8f);
+            textCD = new UIText("", 0.8f);
             textCD.Width.Set(30, 0f);
             textCD.Height.Set(35, 0f);
             textCD.Top.Set(40, 0f);
@@ -59,8 +60,18 @@ namespace FrogEnergyShields.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (FrogEnergyShieldModPlayer.ShieldOn == false)
+            var modPlayer = Main.LocalPlayer.GetModPlayer<FrogEnergyShieldModPlayer>();
+            if (modPlayer.ShieldOn == false)
                 return;
+            var config = ModContent.GetInstance<FrogEnergyShieldClientConfig>();
+            if (area.Left.Pixels != config.PositionX)
+            {
+                area.Left.Pixels = config.PositionX;
+            }
+            if (area.Top.Pixels != config.PositionY)
+            {
+                area.Top.Pixels = config.PositionY;
+            }
 
             base.Draw(spriteBatch);
         }
@@ -92,15 +103,25 @@ namespace FrogEnergyShields.UI
 
         public override void Update(GameTime gameTime)
         {
-            if (FrogEnergyShieldModPlayer.ShieldOn == false)
+            var modPlayer = Main.LocalPlayer.GetModPlayer<FrogEnergyShieldModPlayer>();
+            var config = ModContent.GetInstance<FrogEnergyShieldClientConfig>();
+            if (modPlayer.ShieldOn == false)
                 return;
 
-            var modPlayer = Main.LocalPlayer.GetModPlayer<FrogEnergyShieldModPlayer>();
-            textE.SetText(FrogEnergyShieldSystem.EnergyTEXT.Format((int)modPlayer.ShieldEnergy, (int)modPlayer.ShieldEnergyMax));
-            textCD.SetText(FrogEnergyShieldSystem.CDTEXT.Format(Math.Round(modPlayer.cooldown/60d,2))); 
-            if (modPlayer.cooldown == 0)
+
+            if (config.wordshowcase == false)
             {
-                textCD.SetText("Ready");
+                textE.SetText("");
+                textCD.SetText("");
+            }
+            else
+            {
+                textE.SetText(FrogEnergyShieldSystem.EnergyTEXT.Format((int)modPlayer.ShieldEnergy, (int)modPlayer.ShieldEnergyMax));
+                textCD.SetText(FrogEnergyShieldSystem.CDTEXT.Format(Math.Round(modPlayer.cooldown / 60d, 2)));
+                if (modPlayer.cooldown == 0)
+                {
+                    textCD.SetText("Ready");
+                }
             }
             base.Update(gameTime);
         }

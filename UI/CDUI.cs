@@ -20,9 +20,11 @@ namespace FrogEnergyShields.UI
 
         public override void OnInitialize()
         {
+
+            var config = ModContent.GetInstance<FrogEnergyShieldClientConfig>();
             area = new UIElement();
-            area.Left.Set(-area.Width.Pixels - 650, 1f);
-            area.Top.Set(65, 0f);
+            area.Left.Set(config.PositionX, 0f);
+            area.Top.Set(config.PositionY+35, 0f);
             area.Width.Set(155, 0f);
             area.Height.Set(6, 0f);
 
@@ -40,9 +42,19 @@ namespace FrogEnergyShields.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (FrogEnergyShieldModPlayer.ShieldOn == false)
+            var modPlayer = Main.LocalPlayer.GetModPlayer<FrogEnergyShieldModPlayer>();
+            if (modPlayer.ShieldOn == false)
                 return;
 
+            var config = ModContent.GetInstance<FrogEnergyShieldClientConfig>();
+            if (area.Left.Pixels != config.PositionX)
+            {
+                area.Left.Pixels = config.PositionX;
+            }
+            if (area.Top.Pixels != config.PositionY)
+            {
+                area.Top.Pixels = config.PositionY + 35;
+            }
             base.Draw(spriteBatch);
         }
 
@@ -71,7 +83,8 @@ namespace FrogEnergyShields.UI
 
         public override void Update(GameTime gameTime)
         {
-            if (FrogEnergyShieldModPlayer.ShieldOn == false)
+            var modPlayer = Main.LocalPlayer.GetModPlayer<FrogEnergyShieldModPlayer>();
+            if (modPlayer.ShieldOn == false)
                 return;
             base.Update(gameTime);
         }

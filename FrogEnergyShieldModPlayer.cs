@@ -5,25 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
+using tModPorter;
 
 namespace FrogEnergyShield
 {
     internal class FrogEnergyShieldModPlayer : ModPlayer
     {
         public int cooldown;
-        public int cooldownMax;//用于UI的绘制
+        public int cooldownMax;//仅用于UI的绘制
         public double ShieldEnergy;
-        public static double ShieldRegen;
-        public  int ShieldEnergyMax;
-        public static bool ShieldOn;
-        public static bool isDodge;
+        public double ShieldRegen;
+        public int ShieldEnergyMax;
+        public bool ShieldOn;
+        public bool isDodge;
 
 
         public override void Initialize()//初始化
         {
+            var config = ModContent.GetInstance<FrogEnergyShieldServerConfig>();
             ShieldOn = false;
             cooldown = 0;
-            cooldownMax = 6 * 60;
+            cooldownMax = config.CD;
             ShieldEnergy = 0;
             ShieldRegen = 0.5;
             ShieldEnergyMax = 0;
@@ -32,26 +34,32 @@ namespace FrogEnergyShield
         public override void OnEnterWorld()//角色进入世界时初始化
         {
             cooldown = 0;
-            cooldownMax = 6 * 60;
-            ShieldEnergyMax = Player.statLifeMax;
             ShieldEnergy = ShieldEnergyMax;
         }
 
         public override void OnRespawn()//角色重生时初始化
         {
             cooldown = 0;
-            cooldownMax = 6 * 60;
-            ShieldEnergyMax = Player.statLifeMax;
             ShieldEnergy = ShieldEnergyMax;
         }
 
         public override void ResetEffects()//每秒刷新60次
         {
             ShieldOn = false;
-            ShieldEnergyMax = Player.statLifeMax;
+            var config = ModContent.GetInstance<FrogEnergyShieldServerConfig>();
+            ShieldRegen = config.Regen / 60d;
+            cooldownMax = config.CD * 60;
+            if (config.MaxShield == "MaxLife")
+            { ShieldEnergyMax = Player.statLifeMax; }
+            else { ShieldEnergyMax = int.Parse(config.MaxShield); }
             cooldown -= 1;//CD每秒-60
 
             cooldown = Utils.Clamp(cooldown, 0, cooldownMax);//限制CD范围
+            //避免更改设置后引起BUG
+            if (cooldown > cooldownMax)
+            {
+                cooldown = cooldownMax;
+            }
             //当CD为0且护盾值低于最大护盾值
             if (cooldown == 0)
             {
@@ -59,6 +67,11 @@ namespace FrogEnergyShield
                 {
                     ShieldEnergy += ShieldRegen;
                     ShieldEnergy = Utils.Clamp(ShieldEnergy, 0, ShieldEnergyMax);//限制护盾值范围
+                }
+                //避免更改设置后引起BUG
+                if (ShieldEnergy > ShieldEnergyMax)
+                {
+                    ShieldEnergy = ShieldEnergyMax;
                 }
             }
         }
@@ -83,7 +96,7 @@ namespace FrogEnergyShield
         {
             if (ShieldOn)
             {
-                cooldown = 6 * 60;
+                cooldown = cooldownMax;
                 if (ShieldEnergy > 0)
                 {
                     

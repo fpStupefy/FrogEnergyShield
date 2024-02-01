@@ -1,23 +1,63 @@
 # This file will automatically update with entries for new content after a build and reload
 
 Items: {
-	debugsword: {
-		DisplayName: debugsword
-		Tooltip: ""
-	}
-
 	HylianFrogShield: {
 		DisplayName: Hylian Frog Shield
-		Tooltip: ""
-	}
-
-	justasword: {
-		DisplayName: justasword
-		Tooltip: ""
+		Tooltip: 
+		'''
+		Provides an energy shield
+		The shield is immune to knockback while the shield exists
+		The shield will bear damage on behalf of the player
+		Defense and damage reduction are not calculated when the shield takes damage
+		Damage that exceeds the upper limit of the shield value will be borne by the player
+		The overflow damage will be borne by the player
+		The shield repairs slowly
+		and taking damage will prevent the shield from repairing for a period of time
+		'''
 	}
 }
 
 UI: {
 	ShieldEnergy: ENERGY: {0} / {1}
 	CD: CD: {0}S
+}
+
+Configs: {
+	FrogEnergyShieldServerConfig: {
+		DisplayName: Frog Energy Shield Server Config
+
+		MaxShield: {
+			Label: Max Shield Value
+			Tooltip: "MaxLife means maxshield is equivalent to the maxlife of player(not include extra life bonuses such as Lifeforce Potion) "
+		}
+
+		Regen: {
+			Label: Shield Regeneration speed
+			Tooltip: Shield regeneration per second
+		}
+
+		CD: {
+			Label: CD
+			Tooltip: Time to pause and restore the shield after receiving damage (seconds)
+		}
+	}
+
+	FrogEnergyShieldClientConfig: {
+		DisplayName: Frog Energy Shield Client Config
+
+		wordshowcase: {
+			Tooltip: ""
+			Label: Whether to display specific values under UI
+		}
+
+		PositionY: {
+			Tooltip: The distance from the upper left corner of the UI to the top of the screen, unit (pixels)
+			Label: UI Position Y
+		}
+
+		PositionX: {
+			Tooltip: The distance from the upper left corner of the UI to the left of the screen, unit (pixels)
+			Label: UI Position X
+		}
+	}
 }

@@ -1,1 +1,12 @@
-EnergyShield 0.1 is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+This module provides an accessory that, when worn, will provide the player with an energy shield and bear damage on the player's behalf.
+Inspired by the starshields in a 1.3MOD FallenStar 49, the roverdriver in Calamity, and a 1.4.3 MOD Halo Shields
+The module has not yet implemented the visual effects of the shield and the sound effects when being attacked.
+
+Source code: https://github.com/fpStupefy/FrogEnergyShield
+
+
+该模组提供了一个饰品，佩戴后会为玩家提供能量护盾，代替玩家承受伤害。
+灵感来源于 1.3时期的MOD落星49里的盾 灾厄里钨钢驱动器系列 和一个暂停更新的1.4.3MOD:Halo Shields
+模组还未实现护盾的视觉效果和受到攻击时的音效
+
+源码：https://github.com/fpStupefy/FrogEnergyShield

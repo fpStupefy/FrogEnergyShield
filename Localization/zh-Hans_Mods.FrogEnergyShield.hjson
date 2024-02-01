@@ -1,0 +1,61 @@
+# This file will automatically update with entries for new content after a build and reload
+
+Items: {
+	HylianFrogShield: {
+		DisplayName: 海利亚呱呱盾
+		Tooltip:	'''
+					提供能量护盾
+					护盾存在期间免疫击退
+					护盾会代替玩家承受伤害
+					护盾承受伤害时不计算防御和伤害减免
+					超过护盾值上限的伤害会由玩家承受溢出部分的伤害
+					护盾会缓慢修复，
+					受伤害会使护盾在一段时间内无法修复
+					'''
+	}
+}
+
+UI: {
+	ShieldEnergy: ENERGY: {0} / {1}
+	CD: CD: {0}S
+}
+
+Configs: {
+	FrogEnergyShieldServerConfig: {
+		DisplayName: 呱呱能量护盾服务端配置
+
+		MaxShield: {
+			Label: 最大护盾值
+			Tooltip: MaxLife表示护盾值等同于角色最大生命值(不包含生命力药水等额外生命加成)
+		}
+
+		Regen: {
+			Label: 护盾回复速度
+			Tooltip: 每秒回复的护盾值
+		}
+
+		CD: {
+			Label: CD
+			Tooltip: 受到伤害后暂停护盾暂停恢复的时间(秒)
+		}
+	}
+
+	FrogEnergyShieldClientConfig: {
+		DisplayName: 呱呱能量护盾客户端配置
+
+		wordshowcase: {
+			Tooltip: ""
+			Label: 是否在UI下显示具体数值
+		}
+
+		PositionY: {
+			Tooltip: UI左上角到屏幕顶端的距离，单位(像素)
+			Label: UI在Y轴上的位置
+		}
+
+		PositionX: {
+			Tooltip: UI左上角到屏幕左端的距离，单位(像素)
+			Label: UI在Y轴上的位置
+		}
+	}
+}
