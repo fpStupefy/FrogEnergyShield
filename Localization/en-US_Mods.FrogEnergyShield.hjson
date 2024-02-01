@@ -3,17 +3,17 @@
 Items: {
 	HylianFrogShield: {
 		DisplayName: Hylian Frog Shield
-		Tooltip: 
-		'''
-		Provides an energy shield
-		The shield is immune to knockback while the shield exists
-		The shield will bear damage on behalf of the player
-		Defense and damage reduction are not calculated when the shield takes damage
-		Damage that exceeds the upper limit of the shield value will be borne by the player
-		The overflow damage will be borne by the player
-		The shield repairs slowly
-		and taking damage will prevent the shield from repairing for a period of time
-		'''
+		Tooltip:
+			'''
+			Provides an energy shield
+			The shield is immune to knockback while the shield exists
+			The shield will bear damage on behalf of the player
+			Defense and damage reduction are not calculated when the shield takes damage
+			Damage that exceeds the upper limit of the shield value will be borne by the player
+			The overflow damage will be borne by the player
+			The shield repairs slowly
+			and taking damage will prevent the shield from repairing for a period of time
+			'''
 	}
 }
 
